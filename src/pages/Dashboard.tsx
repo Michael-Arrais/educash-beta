@@ -17,6 +17,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AIChat from "@/components/AIChat";
 
 const Dashboard = () => {
   const [transactions, setTransactions] = useState<any[]>([]);
@@ -95,7 +96,6 @@ const Dashboard = () => {
     }
 
     try {
-      // Verificar se o usuário está autenticado
       if (!user) {
         toast({
           title: "Erro",
@@ -105,7 +105,6 @@ const Dashboard = () => {
         return;
       }
 
-      // Criar um objeto de transação com o user_id incluído
       const transactionWithUserId = {
         ...newTransaction,
         user_id: user.id
@@ -161,7 +160,6 @@ const Dashboard = () => {
     }
 
     try {
-      // Verificar se o usuário está autenticado
       if (!user) {
         toast({
           title: "Erro",
@@ -171,7 +169,6 @@ const Dashboard = () => {
         return;
       }
 
-      // Criar um objeto de meta com o user_id incluído
       const goalWithUserId = {
         ...newGoal,
         user_id: user.id
@@ -481,86 +478,97 @@ const Dashboard = () => {
             </Card>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Metas Financeiras</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {goals.map((goal) => (
-                <Card key={goal.id}>
-                  <CardHeader>
-                    <CardTitle>{goal.titulo}</CardTitle>
-                    <CardDescription>{goal.descricao}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4">
-                      <div className="text-sm text-gray-600">Progresso</div>
-                      <Progress value={(goal.valor_atual / goal.valor_alvo) * 100} />
-                      <div className="text-sm text-gray-600">
-                        {((goal.valor_atual / goal.valor_alvo) * 100).toFixed(2)}%
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-600">Valor Atual</div>
-                      <div className="text-sm text-blue-600">R$ {goal.valor_atual.toFixed(2)}</div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-600">Valor Alvo</div>
-                      <div className="text-sm text-green-600">R$ {goal.valor_alvo.toFixed(2)}</div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm text-gray-600">Data Alvo</div>
-                      <div className="text-sm text-gray-800">{goal.data_alvo}</div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Transações Recentes</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Descrição
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Valor
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Tipo
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Categoria
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Data
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.map((transaction) => (
-                    <tr key={transaction.id}>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">{transaction.descricao}</p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">R$ {transaction.valor.toFixed(2)}</p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">{transaction.tipo}</p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">{transaction.categoria}</p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">{transaction.data_transacao}</p>
-                      </td>
-                    </tr>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div className="lg:col-span-2">
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Metas Financeiras</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {goals.map((goal) => (
+                    <Card key={goal.id}>
+                      <CardHeader>
+                        <CardTitle>{goal.titulo}</CardTitle>
+                        <CardDescription>{goal.descricao}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="mb-4">
+                          <div className="text-sm text-gray-600">Progresso</div>
+                          <Progress value={(goal.valor_atual / goal.valor_alvo) * 100} />
+                          <div className="text-sm text-gray-600">
+                            {((goal.valor_atual / goal.valor_alvo) * 100).toFixed(2)}%
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm text-gray-600">Valor Atual</div>
+                          <div className="text-sm text-blue-600">R$ {goal.valor_atual.toFixed(2)}</div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm text-gray-600">Valor Alvo</div>
+                          <div className="text-sm text-green-600">R$ {goal.valor_alvo.toFixed(2)}</div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm text-gray-600">Data Alvo</div>
+                          <div className="text-sm text-gray-800">{goal.data_alvo}</div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Transações Recentes</h2>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full leading-normal">
+                    <thead>
+                      <tr>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Descrição
+                        </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Valor
+                        </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Tipo
+                        </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Categoria
+                        </th>
+                        <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                          Data
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {transactions.map((transaction) => (
+                        <tr key={transaction.id}>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{transaction.descricao}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">R$ {transaction.valor.toFixed(2)}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{transaction.tipo}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{transaction.categoria}</p>
+                          </td>
+                          <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-900 whitespace-no-wrap">{transaction.data_transacao}</p>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">Assistente FinAI</h2>
+              <div className="h-[calc(100vh-200px)]">
+                <AIChat />
+              </div>
             </div>
           </div>
         </div>
