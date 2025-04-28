@@ -1,7 +1,10 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  // Check if we're in a browser environment with window available
+  const isBrowser = typeof window !== 'undefined';
+  
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8">
       <div className="container mx-auto px-4">
@@ -38,10 +41,10 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Início</Link></li>
-              <li><Link to="/features" className="text-gray-400 hover:text-white transition-colors">Recursos</Link></li>
-              <li><Link to="/education" className="text-gray-400 hover:text-white transition-colors">Educação Financeira</Link></li>
-              <li><Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</Link></li>
+              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Início</a></li>
+              <li><a href="/features" className="text-gray-400 hover:text-white transition-colors">Recursos</a></li>
+              <li><a href="/education" className="text-gray-400 hover:text-white transition-colors">Educação Financeira</a></li>
+              <li><a href="/dashboard" className="text-gray-400 hover:text-white transition-colors">Dashboard</a></li>
             </ul>
           </div>
           
