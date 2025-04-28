@@ -1,66 +1,144 @@
 
 import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/login");
+  };
 
   return (
-    <nav className="bg-white shadow-sm py-4 fixed w-full top-0 z-10">
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="text-white font-bold text-sm">Fi</span>
-          </div>
-          <span className="font-bold text-xl text-gray-800">Fin<span className="text-primary">AI</span></span>
-        </a>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-2">
+              <span className="text-white font-bold text-sm">Fi</span>
+            </div>
+            <span className="font-bold text-xl text-gray-800">FinAI</span>
+          </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
-          <a href="/" className="text-gray-700 hover:text-primary transition-colors">Início</a>
-          <a href="/features" className="text-gray-700 hover:text-primary transition-colors">Recursos</a>
-          <a href="/education" className="text-gray-700 hover:text-primary transition-colors">Educação</a>
-          <a href="/dashboard" className="border border-primary text-primary hover:bg-primary-100 px-4 py-2 rounded">
-            Dashboard
-          </a>
-          <a href="/login" className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded">
-            Entrar
-          </a>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-gray-700 focus:outline-none"
-          >
-            {isMobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-1">
+            <Link to="/">
+              <Button variant={isActive("/") ? "default" : "ghost"}>
+                Início
+              </Button>
+            </Link>
+            {user && (
+              <>
+                <Link to="/dashboard">
+                  <Button variant={isActive("/dashboard") ? "default" : "ghost"}>
+                    Dashboard
+                  </Button>
+                </Link>
+                <Link to="/recursos">
+                  <Button variant={isActive("/recursos") ? "default" : "ghost"}>
+                    Recursos
+                  </Button>
+                </Link>
+                <Link to="/educacao">
+                  <Button variant={isActive("/educacao") ? "default" : "ghost"}>
+                    Educação
+                  </Button>
+                </Link>
+              </>
             )}
-          </button>
+          </nav>
+
+          {/* Auth buttons / User menu */}
+          <div className="hidden md:flex items-center space-x-2">
+            {user ? (
+              <Button variant="outline" onClick={handleSignOut}>
+                Sair
+              </Button>
+            ) : (
+              <Link to="/login">
+                <Button>Entrar</Button>
+              </Link>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[240px]">
+              <nav className="flex flex-col space-y-4 mt-8">
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  <Button
+                    variant={isActive("/") ? "default" : "ghost"}
+                    className="w-full justify-start"
+                  >
+                    Início
+                  </Button>
+                </Link>
+                {user && (
+                  <>
+                    <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant={isActive("/dashboard") ? "default" : "ghost"}
+                        className="w-full justify-start"
+                      >
+                        Dashboard
+                      </Button>
+                    </Link>
+                    <Link to="/recursos" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant={isActive("/recursos") ? "default" : "ghost"}
+                        className="w-full justify-start"
+                      >
+                        Recursos
+                      </Button>
+                    </Link>
+                    <Link to="/educacao" onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant={isActive("/educacao") ? "default" : "ghost"}
+                        className="w-full justify-start"
+                      >
+                        Educação
+                      </Button>
+                    </Link>
+                  </>
+                )}
+                {user ? (
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => {
+                      handleSignOut();
+                      setIsOpen(false);
+                    }}
+                  >
+                    Sair
+                  </Button>
+                ) : (
+                  <Link to="/login" onClick={() => setIsOpen(false)} className="w-full">
+                    <Button className="w-full">Entrar</Button>
+                  </Link>
+                )}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t mt-4 py-3 animate-fade-in">
-          <div className="container mx-auto px-4 flex flex-col space-y-3">
-            <a href="/" className="text-gray-700 hover:text-primary py-2 transition-colors">Início</a>
-            <a href="/features" className="text-gray-700 hover:text-primary py-2 transition-colors">Recursos</a>
-            <a href="/education" className="text-gray-700 hover:text-primary py-2 transition-colors">Educação</a>
-            <a href="/dashboard" className="text-gray-700 hover:text-primary py-2 transition-colors">Dashboard</a>
-            <a href="/login" className="bg-primary hover:bg-primary-600 text-white py-2 px-4 rounded text-center">
-              Entrar
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
+    </header>
   );
 };
 

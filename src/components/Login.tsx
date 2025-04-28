@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -16,39 +18,62 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulando uma autenticação
-    setTimeout(() => {
-      // Em um caso real, aqui teríamos a lógica de autenticação
-      console.log("Login with:", { email: loginEmail, password: loginPassword });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: loginEmail,
+        password: loginPassword,
+      });
+      
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Login realizado com sucesso!");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      toast.error("Erro ao fazer login");
+      console.error("Login error:", error);
+    } finally {
       setLoading(false);
-      navigate("/dashboard");
-    }, 1500);
+    }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (registerPassword !== registerConfirmPassword) {
-      alert("As senhas não coincidem!");
+      toast.error("As senhas não coincidem!");
       return;
     }
     
     setLoading(true);
     
-    // Simulando um registro
-    setTimeout(() => {
-      // Em um caso real, aqui teríamos a lógica de registro
-      console.log("Register with:", { 
-        name: registerName,
+    try {
+      const { error } = await supabase.auth.signUp({
         email: registerEmail,
-        password: registerPassword 
+        password: registerPassword,
+        options: {
+          data: {
+            nome: registerName,
+          }
+        }
       });
+      
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Conta criada com sucesso! Verifique seu email para confirmar o cadastro.");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      toast.error("Erro ao criar conta");
+      console.error("Register error:", error);
+    } finally {
       setLoading(false);
-      navigate("/dashboard");
-    }, 1500);
+    }
   };
 
   return (
