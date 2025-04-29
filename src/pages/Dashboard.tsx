@@ -1,179 +1,203 @@
 
-import React, { useState, useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { UserNav } from "@/components/UserNav";
-import { useAuth } from "@/contexts/AuthContext";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AIChat from "@/components/AIChat";
+import { useAuth } from "@/contexts/AuthContext";
 import { FinancialSummaryCard } from "@/components/dashboard/FinancialSummaryCard";
-import { AddTransactionCard } from "@/components/dashboard/AddTransactionCard";
-import { FinancialGoalsList } from "@/components/dashboard/FinancialGoalsList";
 import { TransactionsTable } from "@/components/dashboard/TransactionsTable";
+import { AddTransactionCard } from "@/components/dashboard/AddTransactionCard";
+import FinancialGoalsCard from "@/components/dashboard/FinancialGoalsCard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner";
+
+interface Transaction {
+  id: string;
+  descricao: string;
+  valor: number;
+  tipo: string;
+  categoria: string;
+  data_transacao: string;
+}
+
+interface Goal {
+  id: string;
+  titulo: string;
+  descricao: string;
+  valor_atual: number;
+  valor_alvo: number;
+  data_alvo: string;
+}
 
 const Dashboard = () => {
-  const [transactions, setTransactions] = useState<any[]>([]);
-  const [goals, setGoals] = useState<any[]>([]);
-  const { toast } = useToast();
-  const { user, profile } = useAuth();
+  const { user } = useAuth();
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [goals, setGoals] = useState<Goal[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchTransactionsAndGoals = async () => {
+    try {
+      setIsLoading(true);
+      if (user) {
+        // Fetch transactions
+        const { data: transactionsData, error: transactionsError } = await supabase
+          .from("transacoes")
+          .select("*")
+          .eq("user_id", user.id)
+          .order("data_transacao", { ascending: false });
+
+        if (transactionsError) throw transactionsError;
+        setTransactions(transactionsData || []);
+        
+        // Fetch goals
+        const { data: goalsData, error: goalsError } = await supabase
+          .from("metas")
+          .select("*")
+          .eq("user_id", user.id)
+          .eq("ativo", true)
+          .order("data_alvo", { ascending: true });
+          
+        if (goalsError) throw goalsError;
+        setGoals(goalsData || []);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
+      toast.error("Erro ao carregar dados da dashboard");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetchTransactions();
-    fetchGoals();
+    fetchTransactionsAndGoals();
   }, [user]);
 
-  const fetchTransactions = async () => {
+  const addTransaction = async (newTransaction: Omit<Transaction, "id">) => {
     try {
       if (!user) return;
+
       const { data, error } = await supabase
         .from("transacoes")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("data_transacao", { ascending: false });
+        .insert({
+          ...newTransaction,
+          user_id: user.id,
+        })
+        .select();
 
-      if (error) {
-        console.error("Erro ao buscar transações:", error);
-        return;
-      }
+      if (error) throw error;
 
-      setTransactions(data || []);
+      setTransactions((prev) => [data[0], ...prev]);
+      toast.success("Transação adicionada com sucesso!");
+      return data[0];
     } catch (error) {
-      console.error("Erro ao buscar transações:", error);
+      console.error("Erro ao adicionar transação:", error);
+      toast.error("Erro ao adicionar transação");
+      throw error;
     }
   };
 
-  const fetchGoals = async () => {
+  const addFinancialGoal = async (newGoal: Omit<Goal, "id">) => {
     try {
       if (!user) return;
+
       const { data, error } = await supabase
         .from("metas")
-        .select("*")
-        .eq("user_id", user.id);
+        .insert({
+          ...newGoal,
+          user_id: user.id,
+        })
+        .select();
 
-      if (error) {
-        console.error("Erro ao buscar metas:", error);
-        return;
-      }
+      if (error) throw error;
 
-      setGoals(data || []);
+      setGoals((prev) => [...prev, data[0]]);
+      return;
     } catch (error) {
-      console.error("Erro ao buscar metas:", error);
+      console.error("Erro ao adicionar meta:", error);
+      toast.error("Erro ao adicionar meta financeira");
+      throw error;
     }
   };
 
-  const handleAddTransaction = async (newTransaction: any) => {
-    if (!newTransaction.descricao || !newTransaction.valor || !newTransaction.categoria) {
-      toast({
-        title: "Erro",
-        description: "Por favor, preencha todos os campos.",
-        variant: "destructive",
-      });
-      return;
-    }
-
+  const updateGoalValue = async (goalId: string, newValue: number) => {
     try {
-      if (!user) {
-        toast({
-          title: "Erro",
-          description: "Você precisa estar logado para adicionar uma transação.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const transactionWithUserId = {
-        ...newTransaction,
-        user_id: user.id
-      };
+      if (!user) return;
 
       const { error } = await supabase
-        .from("transacoes")
-        .insert(transactionWithUserId);
+        .from("metas")
+        .update({ valor_atual: newValue })
+        .eq("id", goalId)
+        .eq("user_id", user.id);
 
-      if (error) {
-        toast({
-          title: "Erro",
-          description: "Falha ao adicionar transação: " + error.message,
-          variant: "destructive",
-        });
-        return;
-      }
+      if (error) throw error;
 
-      toast({
-        title: "Sucesso",
-        description: "Transação adicionada com sucesso!",
-        variant: "default",
-      });
-
-      fetchTransactions();
-    } catch (error: any) {
-      console.error("Erro ao adicionar transação:", error);
-      toast({
-        title: "Erro",
-        description: "Ocorreu um erro ao adicionar a transação.",
-        variant: "destructive",
-      });
+      setGoals((prev) =>
+        prev.map((goal) =>
+          goal.id === goalId ? { ...goal, valor_atual: newValue } : goal
+        )
+      );
+      return;
+    } catch (error) {
+      console.error("Erro ao atualizar meta:", error);
+      toast.error("Erro ao atualizar meta financeira");
+      throw error;
     }
   };
 
-  const totalIncome = transactions
-    .filter((t) => t.tipo === "receita")
-    .reduce((sum, t) => sum + t.valor, 0);
+  // Calculate financial summary
+  const calculateSummary = () => {
+    const totalIncome = transactions
+      .filter((t) => t.tipo === "receita")
+      .reduce((sum, t) => sum + t.valor, 0);
 
-  const totalExpenses = transactions
-    .filter((t) => t.tipo === "despesa")
-    .reduce((sum, t) => sum + t.valor, 0);
+    const totalExpenses = transactions
+      .filter((t) => t.tipo === "despesa")
+      .reduce((sum, t) => sum + t.valor, 0);
 
-  const balance = totalIncome - totalExpenses;
+    const balance = totalIncome - totalExpenses;
+
+    return { balance, totalIncome, totalExpenses };
+  };
+
+  const { balance, totalIncome, totalExpenses } = calculateSummary();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow pt-20 pb-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-              <p className="text-gray-600">Olá, {profile?.nome || "Usuário"}! Acompanhe suas finanças de perto.</p>
-            </div>
-            <div className="mt-4 lg:mt-0">
-              <UserNav />
-            </div>
-          </div>
+    <div className="container mx-auto px-4 py-8 mt-4">
+      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <FinancialSummaryCard 
-              balance={balance}
-              totalIncome={totalIncome}
-              totalExpenses={totalExpenses}
-            />
-            <AddTransactionCard onAddTransaction={handleAddTransaction} />
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div className="lg:col-span-2">
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Metas Financeiras</h2>
-                <FinancialGoalsList goals={goals} />
-              </div>
-
-              <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">Transações Recentes</h2>
-                <TransactionsTable transactions={transactions} />
-              </div>
-            </div>
-
-            <div className="lg:col-span-1">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Assistente FinAI</h2>
-              <div className="h-[calc(100vh-200px)]">
-                <AIChat />
-              </div>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="lg:col-span-1">
+          <FinancialSummaryCard
+            balance={balance}
+            totalIncome={totalIncome}
+            totalExpenses={totalExpenses}
+          />
         </div>
-      </main>
-      <Footer />
+        <div className="lg:col-span-2">
+          <Tabs defaultValue="transactions" className="h-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="transactions">Transações</TabsTrigger>
+              <TabsTrigger value="goals">Meu Pé-de-meia</TabsTrigger>
+            </TabsList>
+            <TabsContent value="transactions" className="space-y-6">
+              <AddTransactionCard onAddTransaction={addTransaction} />
+              {transactions.length > 0 ? (
+                <TransactionsTable transactions={transactions} />
+              ) : (
+                <div className="text-center p-6 bg-gray-50 rounded-lg">
+                  <p>Nenhuma transação registrada.</p>
+                  <p className="text-gray-500">Adicione sua primeira transação usando o formulário acima.</p>
+                </div>
+              )}
+            </TabsContent>
+            <TabsContent value="goals" className="h-full">
+              <FinancialGoalsCard 
+                goals={goals} 
+                onAddGoal={addFinancialGoal}
+                onUpdateGoal={updateGoalValue}
+              />
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
     </div>
   );
 };

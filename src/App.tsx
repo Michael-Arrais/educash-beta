@@ -1,61 +1,73 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/sonner";
+
 import { AuthProvider } from "./contexts/AuthContext";
-import Index from "./pages/Index";
-import Dashboard from "./pages/Dashboard";
-import Login from "./components/Login";
-import NotFound from "./pages/NotFound";
-import Recursos from "./pages/Recursos";
-import Educacao from "./pages/Educacao";
 import PrivateRoute from "./components/PrivateRoute";
 
-const queryClient = new QueryClient();
+import Index from "./pages/Index";
+import Dashboard from "./pages/Dashboard";
+import Recursos from "./pages/Recursos";
+import Educacao from "./pages/Educacao";
+import NotFound from "./pages/NotFound";
+import Login from "./components/Login";
+import QuizPage from "./pages/QuizPage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import FloatingAIButton from "./components/FloatingAIButton";
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+function App() {
+  return (
     <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/recursos"
-              element={
-                <PrivateRoute>
-                  <Recursos />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/educacao"
-              element={
-                <PrivateRoute>
-                  <Educacao />
-                </PrivateRoute>
-              }
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <Router>
+        <Navbar />
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow pt-16">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/recursos"
+                element={
+                  <PrivateRoute>
+                    <Recursos />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/educacao"
+                element={
+                  <PrivateRoute>
+                    <Educacao />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/educacao/quiz/:id"
+                element={
+                  <PrivateRoute>
+                    <QuizPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+        <FloatingAIButton />
+        <Toaster position="top-right" />
+      </Router>
     </AuthProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;
