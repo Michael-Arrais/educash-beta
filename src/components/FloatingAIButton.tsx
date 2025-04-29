@@ -7,7 +7,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { AIChat } from "@/components/AIChat";
+import AIChat from "@/components/AIChat"; // Changed from named import to default import
 import { MessageCircle, X } from "lucide-react";
 
 const FloatingAIButton = () => {

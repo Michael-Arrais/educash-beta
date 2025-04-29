@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -86,7 +85,6 @@ const Dashboard = () => {
 
       setTransactions((prev) => [data[0], ...prev]);
       toast.success("Transação adicionada com sucesso!");
-      return data[0];
     } catch (error) {
       console.error("Erro ao adicionar transação:", error);
       toast.error("Erro ao adicionar transação");
