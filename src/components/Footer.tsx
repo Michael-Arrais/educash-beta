@@ -78,7 +78,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
-          <p>© 2024 FinAI - Criado e desenvolvido por alunos do CETI Pinheiro Machado</p>
+          <p>© 2025 FinAI - Criado e desenvolvido por alunos do CETI Pinheiro Machado</p>
         </div>
       </div>
     </footer>

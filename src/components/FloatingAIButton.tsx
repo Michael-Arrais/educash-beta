@@ -15,7 +15,10 @@ const FloatingAIButton = () => {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div className="bg-primary text-white text-sm px-3 py-1 rounded-full mb-2 shadow-md">
+          Fale com o FI
+        </div>
         <Button
           size="lg"
           className="rounded-full h-14 w-14 shadow-lg"
