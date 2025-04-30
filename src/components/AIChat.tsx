@@ -68,7 +68,7 @@ const AIChat = () => {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={flex ${msg.role === "user" ? "justify-end" : "justify-start"}}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
                 className={`max-w-[80%] rounded-lg px-4 py-2 ${
