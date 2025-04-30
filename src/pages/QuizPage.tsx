@@ -83,7 +83,11 @@ const QuizPage = () => {
   };
   
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      handleQuizComplete();
+    }
   };
   
   const handleQuizComplete = async () => {
@@ -106,7 +110,14 @@ const QuizPage = () => {
         
         if (error) throw error;
         
-        toast.success("Respostas salvas com sucesso!");
+        const score = calculateScore();
+        if (score.percentage >= 70) {
+          toast.success("Parabéns! Você concluiu o quiz com sucesso!");
+        } else if (score.percentage >= 40) {
+          toast.info("Bom trabalho! Continue praticando para melhorar.");
+        } else {
+          toast.error("Você pode melhorar! Que tal tentar novamente?");
+        }
       } catch (error) {
         console.error("Erro ao salvar respostas:", error);
         toast.error("Erro ao salvar suas respostas. Seus resultados não foram registrados.");
@@ -242,6 +253,15 @@ const QuizPage = () => {
         isLastQuestion={currentQuestionIndex === questions.length - 1}
         onComplete={handleQuizComplete}
       />
+      
+      {/* Add navigation button for next question */}
+      {responses.length > currentQuestionIndex && currentQuestionIndex < questions.length - 1 && (
+        <div className="mt-4 flex justify-end">
+          <Button onClick={handleNextQuestion}>
+            Próxima Pergunta
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

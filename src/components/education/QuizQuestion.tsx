@@ -38,6 +38,7 @@ const QuizQuestion = ({ question, onAnswer, isLastQuestion, onComplete }: Questi
     if (isLastQuestion && onComplete) {
       onComplete();
     } else {
+      // Reset the state for the next question
       setSelectedAnswer(null);
       setHasSubmitted(false);
     }

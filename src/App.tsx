@@ -14,7 +14,7 @@ import Login from "./components/Login";
 import QuizPage from "./pages/QuizPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import FloatingAIButton from "./components/FloatingAIButton";
+import FloatingAIButtonCustom from "./components/FloatingAIButtonCustom";
 
 function App() {
   return (
@@ -63,7 +63,7 @@ function App() {
           </main>
           <Footer />
         </div>
-        <FloatingAIButton />
+        <FloatingAIButtonCustom />
         <Toaster position="top-right" />
       </Router>
     </AuthProvider>
