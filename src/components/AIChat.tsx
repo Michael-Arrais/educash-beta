@@ -31,20 +31,44 @@ const AIChat = () => {
 
       const intents = [
         {
-          keywords: ["organizar financeiramente", "como me organizar", "organização financeira"],
-          response: "📊 Uma boa organização financeira começa com o controle de gastos fixos e variáveis. Monte uma planilha simples, defina metas mensais e reserve uma parte para emergências."
+          keywords: ["reserva de emergência", "emergência", "guardar emergência"],
+          response: "Uma reserva de emergência é um dinheiro guardado para situações imprevistas, como um problema de saúde ou perda de renda. O ideal é juntar de 3 a 6 meses dos seus gastos mensais. Mesmo que você comece com pouco, o importante é ter um valor guardado que te dê segurança."
         },
         {
-          keywords: ["poupar", "guardar dinheiro", "como economizar"],
-          response: "💡 Para poupar melhor, comece anotando seus gastos, defina um valor fixo para economizar todo mês e evite compras por impulso. Automatize sua poupança se possível."
+          keywords: ["poupar pouco dinheiro", "economizar pouco", "guardar com pouco"],
+          response: "O segredo é começar pequeno e ser constante. Separe uma parte do que você recebe — mesmo que seja R$ 5 ou R$ 10 por mês — e guarde em um lugar seguro, como uma conta poupança ou conta digital que renda juros. Aos poucos, esse dinheiro cresce."
         },
         {
-          keywords: ["estratégias", "melhor organização", "melhorar finanças"],
-          response: "🔍 Estratégias úteis incluem: uso de aplicativos de controle financeiro, revisão de gastos semanais, definição de metas SMART e priorização de dívidas com maiores juros."
+          keywords: ["educação financeira", "aprender sobre dinheiro", "entender finanças"],
+          response: "Educação financeira é aprender a cuidar bem do seu dinheiro: saber poupar, gastar com consciência e planejar o futuro. Quanto mais você entende sobre isso, mais autonomia você tem para realizar seus sonhos e evitar dívidas."
+        },
+        {
+          keywords: ["dividir salário", "organizar dinheiro", "dividir renda"],
+          response: "Uma dica simples é: 50% para o que você precisa (como transporte, alimentação), 30% para o que você quer (lazer, hobbies) e 20% para guardar (poupança ou reserva). Se não der para seguir exatamente, adapte ao que você consegue hoje."
+        },
+        {
+          keywords: ["sonho curto prazo", "juntar dinheiro", "comprar algo"],
+          response: "Primeiro, defina quanto custa o que você quer. Depois, veja quanto pode guardar por mês e em quanto tempo alcança o valor. Se possível, procure promoções e evite parcelar, para não pagar juros."
+        },
+        {
+          keywords: ["cartão de crédito", "usar cartão", "crédito"],
+          response: "Pode sim, mas é importante ter bastante cuidado. Só use o cartão se tiver certeza de que conseguirá pagar a fatura no mês seguinte. Nunca gaste mais do que pode pagar e evite o pagamento mínimo, que gera juros altos."
+        },
+        {
+          keywords: ["juros", "juros simples", "juros composto"],
+          response: "Juros é o valor extra que você paga quando empresta dinheiro ou atrasa um pagamento. Também pode ser o que você ganha quando empresta dinheiro para o banco (como na poupança). O ideal é sempre evitar pagar juros e tentar ganhar juros guardando seu dinheiro."
+        },
+        {
+          keywords: ["orçamento mensal", "controlar gastos", "planejar dinheiro"],
+          response: "Anote tudo o que você ganha e tudo o que gasta durante o mês. Divida em categorias (alimentação, transporte, lazer). Assim você entende para onde seu dinheiro vai e pode planejar melhor quanto pode guardar."
+        },
+        {
+          keywords: ["pix", "pagamento instantâneo", "transferência pix"],
+          response: "Nunca compartilhe suas senhas ou chaves PIX com estranhos. Sempre confirme os dados antes de enviar o dinheiro e desconfie de promessas de dinheiro fácil. Se tiver dúvida, pergunte para alguém de confiança ou para o banco."
         },
         {
           keywords: ["o que você pode fazer", "como você ajuda", "funções"],
-          response: "🤖 Posso te ajudar com sugestões de economia, planejamento de metas, análise de gastos e criação de hábitos financeiros saudáveis!"
+          response: "🤖 Posso te ajudar com sugestões sobre reserva de emergência, como poupar dinheiro, educação financeira, organização do salário, cartão de crédito e outros temas de finanças pessoais!"
         }
       ];
 
@@ -54,7 +78,7 @@ const AIChat = () => {
 
       const response = matched
         ? matched.response
-        : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças?";
+        : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças? Você pode me perguntar sobre reserva de emergência, educação financeira, como poupar dinheiro e outros temas.";
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
       setLoading(false);
