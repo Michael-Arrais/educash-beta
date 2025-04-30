@@ -31,6 +31,22 @@ const AIChat = () => {
 
       const intents = [
         {
+          keywords: ["organizar financeiramente", "como me organizar", "organização financeira"],
+          response: "📊 Uma boa organização financeira começa com o controle de gastos fixos e variáveis. Monte uma planilha simples, defina metas mensais e reserve uma parte para emergências."
+        },
+        {
+          keywords: ["poupar", "guardar dinheiro", "como economizar"],
+          response: "💡 Para poupar melhor, comece anotando seus gastos, defina um valor fixo para economizar todo mês e evite compras por impulso. Automatize sua poupança se possível."
+        },
+        {
+          keywords: ["estratégias", "melhor organização", "melhorar finanças"],
+          response: "🔍 Estratégias úteis incluem: uso de aplicativos de controle financeiro, revisão de gastos semanais, definição de metas SMART e priorização de dívidas com maiores juros."
+        },
+        {
+          keywords: ["o que você pode fazer", "como você ajuda", "funções"],
+          response: "🤖 Posso te ajudar com sugestões de economia, planejamento de metas, análise de gastos e criação de hábitos financeiros saudáveis!"
+        },
+        {
           keywords: ["reserva de emergência", "emergência", "guardar emergência"],
           response: "Uma reserva de emergência é um dinheiro guardado para situações imprevistas, como um problema de saúde ou perda de renda. O ideal é juntar de 3 a 6 meses dos seus gastos mensais. Mesmo que você comece com pouco, o importante é ter um valor guardado que te dê segurança."
         },
@@ -71,6 +87,18 @@ const AIChat = () => {
           response: "🤖 Posso te ajudar com sugestões sobre reserva de emergência, como poupar dinheiro, educação financeira, organização do salário, cartão de crédito e outros temas de finanças pessoais!"
         }
       ];
+<<<<<<< HEAD
+
+      const matched = intents.find(({ keywords }) =>
+        keywords.some(keyword => lowerMessage.includes(keyword))
+      );
+
+      const response = matched
+        ? matched.response
+        : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças?";
+
+      setMessages(prev => [...prev, { role: "assistant", content: response }]);
+=======
 
       const matched = intents.find(({ keywords }) =>
         keywords.some(keyword => lowerMessage.includes(keyword))
@@ -81,6 +109,7 @@ const AIChat = () => {
         : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças? Você pode me perguntar sobre reserva de emergência, educação financeira, como poupar dinheiro e outros temas.";
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
+>>>>>>> 144ce5d76705247586c21adb7a1720ad2019bd29
       setLoading(false);
     }, 1000);
   };
@@ -90,9 +119,15 @@ const AIChat = () => {
       <CardContent className="flex-1 flex flex-col p-4 h-full">
         <div className="flex-1 overflow-y-auto space-y-4 mb-4 max-h-[60vh]">
           {messages.map((msg, index) => (
+<<<<<<< HEAD
+            <div
+              key={index}
+              className={flex ${msg.role === "user" ? "justify-end" : "justify-start"}}
+=======
             <div
               key={index}
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+>>>>>>> 144ce5d76705247586c21adb7a1720ad2019bd29
             >
               <div
                 className={`max-w-[80%] rounded-lg px-4 py-2 ${
