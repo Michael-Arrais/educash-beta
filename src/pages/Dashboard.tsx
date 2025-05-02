@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -27,7 +28,7 @@ interface Goal {
 }
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [goals, setGoals] = useState<Goal[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -157,9 +158,15 @@ const Dashboard = () => {
 
   const { balance, totalIncome, totalExpenses } = calculateSummary();
 
+  // Get user's first name for greeting
+  const firstName = profile?.nome ? profile.nome.split(' ')[0] : 'usuário';
+
   return (
     <div className="container mx-auto px-4 py-8 mt-4">
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <p className="text-lg text-gray-600">Bem-vindo, {firstName}!</p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-1">

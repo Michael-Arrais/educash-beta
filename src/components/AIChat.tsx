@@ -13,7 +13,7 @@ type Message = {
 const AIChat = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Olá! Eu sou a BIA, sua assistente financeira. Como posso te ajudar hoje?" }
+    { role: "assistant", content: "Olá! Eu sou o CashIA, seu assistente financeiro. Como posso te ajudar hoje?" }
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -132,7 +132,7 @@ const AIChat = () => {
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Pergunte à BIA sobre suas finanças..."
+            placeholder="Pergunte ao CashIA sobre suas finanças..."
             className="flex-1"
           />
           <Button type="submit" disabled={loading || !message.trim()}>
