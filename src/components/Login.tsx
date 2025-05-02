@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import SabiaLogo from "./SabiaLogo";
+import CashLogo from "./CashLogo";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -82,10 +82,10 @@ const Login = () => {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
           <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <SabiaLogo className="w-10 h-10 text-white" />
+            <CashLogo className="w-10 h-10 text-white" />
           </div>
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-            Bem-vindo ao $aBIA
+            Bem-vindo ao EduCash
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Sua plataforma de inteligência financeira
