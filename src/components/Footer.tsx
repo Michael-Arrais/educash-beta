@@ -1,5 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
+import SabiaLogo from "./SabiaLogo";
 
 const Footer = () => {
   // Check if we're in a browser environment with window available
@@ -12,9 +13,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-white font-bold text-sm">Fi</span>
+                <SabiaLogo className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-xl">Fin<span className="text-primary-400">AI</span></span>
+              <span className="font-bold text-xl">$a<span className="text-primary-400">BIA</span></span>
             </div>
             <p className="text-gray-400 mb-4">
               Educação financeira inteligente para estudantes do ensino médio.
@@ -65,7 +66,7 @@ const Footer = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                contato@finai.edu.br
+                contato@sabia.edu.br
               </li>
               <li className="flex items-center text-gray-400">
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +79,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
-          <p>© 2025 FinAI - Criado e desenvolvido por alunos do CETI Pinheiro Machado</p>
+          <p>© 2025 $aBIA - Criado e desenvolvido por alunos do CETI Pinheiro Machado</p>
         </div>
       </div>
     </footer>

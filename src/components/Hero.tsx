@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SabiaLogo from "./SabiaLogo";
 
 const Hero = () => {
   return (
@@ -9,11 +10,11 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/2 lg:pr-16">
             <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-800">
-              Inteligência Financeira com <span className="text-primary">FinAI</span>
+              Inteligência Financeira com <span className="text-primary">$a<span className="text-primary">BIA</span></span>
             </h1>
             <p className="text-lg text-gray-600 mb-8">
               Aprenda a controlar suas finanças de forma inteligente e divertida. 
-              O FinAI é um assistente de IA que ajuda estudantes a administrar recursos 
+              O $aBIA é um assistente de IA que ajuda estudantes a administrar recursos 
               governamentais e desenvolver hábitos financeiros saudáveis.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -37,14 +38,14 @@ const Hero = () => {
                 <div className="bg-gray-100 rounded-xl p-4 mb-6">
                   <div className="flex items-center mb-4">
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                      AI
+                      <SabiaLogo className="w-5 h-5 text-white" />
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm text-gray-500">Assistente FinAI</p>
+                      <p className="text-sm text-gray-500">Assistente $aBIA</p>
                     </div>
                   </div>
                   <p className="text-gray-800">
-                    Olá! Sou o FinAI, seu assistente financeiro. Como posso ajudar você a gerenciar melhor seus recursos hoje?
+                    Olá! Sou a BIA, sua assistente financeira. Como posso ajudar você a gerenciar melhor seus recursos hoje?
                   </p>
                 </div>
                 <div className="space-y-4">

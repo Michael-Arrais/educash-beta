@@ -1,6 +1,7 @@
-import Navbar from "@/components/Navbar";
+
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import SabiaLogo from "@/components/SabiaLogo";
 
 const Index = () => {
   return (
@@ -15,7 +16,7 @@ const Index = () => {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl font-bold mb-4 text-gray-800">O que nossos usuários dizem</h2>
               <p className="text-gray-600">
-                Veja como o FinAI tem ajudado estudantes a desenvolver habilidades financeiras e
+                Veja como o $aBIA tem ajudado estudantes a desenvolver habilidades financeiras e
                 planejar melhor seu futuro.
               </p>
             </div>
@@ -32,7 +33,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  "O FinAI me ajudou a criar um plano para economizar para meu curso técnico. Agora sei exatamente quanto preciso guardar por mês!"
+                  "O $aBIA me ajudou a criar um plano para economizar para meu curso técnico. Agora sei exatamente quanto preciso guardar por mês!"
                 </p>
               </div>
               
@@ -47,7 +48,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  "Consegui entender como funcionam os juros e comecei a poupar uma parte do meu auxílio. O assistente de IA me dá dicas super úteis!"
+                  "Consegui entender como funcionam os juros e comecei a poupar uma parte do meu auxílio. A BIA me dá dicas super úteis!"
                 </p>
               </div>
               
@@ -62,7 +63,7 @@ const Index = () => {
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  "Antes eu gastava todo meu dinheiro sem pensar, mas o FinAI me ensinou a controlar melhor meus gastos e agora estou juntando para comprar um notebook."
+                  "Antes eu gastava todo meu dinheiro sem pensar, mas o $aBIA me ensinou a controlar melhor meus gastos e agora estou juntando para comprar um notebook."
                 </p>
               </div>
             </div>
