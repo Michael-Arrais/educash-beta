@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import SabiaLogo from "./SabiaLogo";
+import CashLogo from "./CashLogo";
 
 type Message = {
   role: "user" | "assistant";
@@ -97,7 +97,7 @@ const AIChat = () => {
             >
               {msg.role === "assistant" && (
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
-                  <SabiaLogo className="w-5 h-5 text-white" />
+                  <CashLogo className="w-5 h-5 text-white" />
                 </div>
               )}
               <div
@@ -115,7 +115,7 @@ const AIChat = () => {
           {loading && (
             <div className="flex justify-start">
               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
-                <SabiaLogo className="w-5 h-5 text-white" />
+                <CashLogo className="w-5 h-5 text-white" />
               </div>
               <div className="bg-gray-100 rounded-lg px-4 py-2 rounded-tl-none">
                 <div className="flex space-x-1">
