@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import AIChat from "./AIChat";
 import SabiaLogo from "./SabiaLogo";
 
@@ -32,7 +32,7 @@ const FloatingAIButtonCustom = () => {
       ) : (
         <Button 
           onClick={toggleChat} 
-          className="rounded-full h-14 w-14 shadow-lg"
+          className="rounded-full h-14 w-14 shadow-lg flex items-center justify-center relative"
         >
           <SabiaLogo className="h-6 w-6" />
           <span className="sr-only">Fale com a BIA</span>

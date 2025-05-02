@@ -9,9 +9,12 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/2 lg:pr-16">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-gray-800">
-              Inteligência Financeira com <span className="text-primary">$a<span className="text-primary">BIA</span></span>
-            </h1>
+            <div className="flex items-center mb-4">
+              <SabiaLogo className="w-8 h-8 text-primary mr-2" />
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-800">
+                Inteligência Financeira com <span className="text-primary">$a<span className="text-primary">BIA</span></span>
+              </h1>
+            </div>
             <p className="text-lg text-gray-600 mb-8">
               Aprenda a controlar suas finanças de forma inteligente e divertida. 
               O $aBIA é um assistente de IA que ajuda estudantes a administrar recursos 
