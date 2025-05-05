@@ -1,94 +1,141 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import CashLogo from "./CashLogo";
 
 const Features = () => {
   const features = [
     {
-      title: "Dashboard Inteligente",
-      description: "Visualize seu saldo, histórico de transações e gráficos detalhados dos seus recursos financeiros.",
+      title: "Aprenda a criar um orçamento",
+      description:
+        "Entenda como dividir suas rendas e despesas de forma organizada e eficiente.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 12l3-3 3 3 4-4m1 5v6m0 0H6m6 0h6M6 9h12m-3 12H6m6-6v4" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+          />
         </svg>
-      )
+      ),
     },
     {
-      title: "Assistente de IA",
-      description: "Receba orientações personalizadas para melhorar sua saúde financeira através do nosso chatbot inteligente.",
+      title: "Controle seus gastos",
+      description:
+        "Registre suas despesas e saiba exatamente para onde seu dinheiro está indo.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
         </svg>
-      )
+      ),
     },
     {
-      title: "Metas Personalizadas",
-      description: "Defina e acompanhe metas financeiras para economizar para objetivos específicos durante o ensino médio.",
+      title: "Crie metas financeiras",
+      description:
+        "Defina objetivos claros e acompanhe seu progresso para alcançá-los.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+          />
         </svg>
-      )
+      ),
     },
     {
-      title: "Relatórios Automáticos",
-      description: "Receba relatórios periódicos sobre seu progresso financeiro e dicas para melhorar suas finanças.",
+      title: "Receba auxílio assistido",
+      description:
+        "Converse com nossa IA e esclareça suas dúvidas sobre educação financeira.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
         </svg>
-      )
+      ),
     },
     {
-      title: "Educação Financeira",
-      description: "Acesse conteúdos interativos, vídeos e quizzes para aprender sobre finanças de forma divertida.",
+      title: "Conheça seus direitos",
+      description:
+        "Saiba quais recursos e auxílios governamentais estão disponíveis para você.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+          />
         </svg>
-      )
+      ),
     },
     {
-      title: "Simulações Financeiras",
-      description: "Simule diferentes cenários de uso do seu dinheiro e veja como suas decisões afetam seu futuro financeiro.",
+      title: "Aprenda com quizzes",
+      description:
+        "Teste seus conhecimentos com quizzes interativos sobre finanças pessoais.",
       icon: (
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
         </svg>
-      )
-    }
+      ),
+    },
   ];
 
   return (
-    <div className="bg-gray-50 py-16">
+    <section className="py-16 bg-gray-50" id="features">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800">Como o FinAI pode ajudar você</h2>
-          <p className="text-gray-600">
-            Nossa plataforma foi pensada para ajudar estudantes do ensino médio a desenvolver
-            habilidades financeiras essenciais para a vida adulta, de forma intuitiva e adaptada à realidade
-            dos jovens que recebem recursos do governo.
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center justify-center p-2 bg-primary-100 rounded-full mb-4">
+            <CashLogo className="w-6 h-6 text-primary mr-2" />
+            <span className="text-primary font-semibold">Recursos</span>
+          </div>
+          <h2 className="text-3xl font-bold mb-4">Como o EduCash pode ajudar você</h2>
+          <p className="text-gray-600 text-lg">
+            Ferramentas e recursos desenvolvidos especialmente para ajudar
+            estudantes a gerenciar seus recursos financeiros com sucesso.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {features.map((feature, index) => (
-            <Card key={index} className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-6">
+                <div className="bg-primary-50 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                   {feature.icon}
                 </div>
-                <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">{feature.description}</CardDescription>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        <div className="text-center">
+          <Link to="/recursos">
+            <Button className="px-8 py-6 text-lg">
+              Explorar recursos
+            </Button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
