@@ -6,6 +6,8 @@ import { FinancialSummaryCard } from "@/components/dashboard/FinancialSummaryCar
 import { TransactionsTable } from "@/components/dashboard/TransactionsTable";
 import { AddTransactionCard } from "@/components/dashboard/AddTransactionCard";
 import FinancialGoalsCard from "@/components/dashboard/FinancialGoalsCard";
+import { FinancialPerformanceCharts } from "@/components/dashboard/FinancialPerformanceCharts";
+import { SpendingInsights } from "@/components/dashboard/SpendingInsights";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
@@ -168,15 +170,29 @@ const Dashboard = () => {
         <p className="text-lg text-gray-600">Bem-vindo, {firstName}!</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-1">
+      {/* Financial Charts - New Section */}
+      <div className="grid grid-cols-1 gap-6 mb-8">
+        <FinancialPerformanceCharts transactions={transactions} />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="md:col-span-1">
           <FinancialSummaryCard
             balance={balance}
             totalIncome={totalIncome}
             totalExpenses={totalExpenses}
           />
+          
+          {/* Spending Insights - New Component */}
+          <div className="mt-6">
+            <SpendingInsights 
+              transactions={transactions} 
+              balance={balance} 
+            />
+          </div>
         </div>
-        <div className="lg:col-span-2">
+        
+        <div className="md:col-span-2">
           <Tabs defaultValue="transactions" className="h-full">
             <TabsList className="mb-4">
               <TabsTrigger value="transactions">Transações</TabsTrigger>
