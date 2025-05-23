@@ -70,6 +70,39 @@ const AIChat = () => {
         {
           keywords: ["o que você pode fazer", "como você ajuda", "funções"],
           response: "🤖 Posso te ajudar com sugestões sobre reserva de emergência, como poupar dinheiro, educação financeira, organização do salário, cartão de crédito e outros temas de finanças pessoais!"
+        },
+        // Novas entradas adicionadas
+        {
+          keywords: ["como sair das dívidas", "quero quitar dívidas", "estou endividado"],
+          response: "Sair das dívidas exige planejamento. Comece organizando tudo o que deve, por valor e prioridade. Negocie prazos maiores e evite fazer novas dívidas. Tente guardar um pouco por mês para pagar aos poucos. Você pode conseguir apoio gratuito em serviços como o Serasa Limpa Nome ou Procon."
+        },
+        {
+          keywords: ["investir com pouco", "investir pouco dinheiro", "renda fixa para iniciantes"],
+          response: "Sim, é possível começar a investir com pouco! Opções como Tesouro Direto e CDBs de bancos digitais aceitam valores a partir de R$ 30. Eles são seguros e ideais para quem está começando. Antes de investir, monte sua reserva de emergência!"
+        },
+        {
+          keywords: ["como evitar gastar", "gasto por impulso", "controle financeiro"],
+          response: "Uma boa dica é esperar 24 horas antes de comprar algo por impulso. Também vale definir um limite para gastos semanais e usar dinheiro em vez de cartão, para sentir mais o valor saindo do seu bolso."
+        },
+        {
+          keywords: ["planilha de gastos", "como montar planilha", "organizar despesas"],
+          response: "Você pode usar uma planilha simples no Excel ou Google Sheets com colunas como: data, tipo de gasto, valor e observações. Registre tudo que gastar por pelo menos um mês. Assim você entende seus hábitos e pode melhorar aos poucos."
+        },
+        {
+          keywords: ["meta financeira", "guardar para objetivo", "economizar para algo"],
+          response: "Defina um objetivo claro, como 'viajar em dezembro' ou 'comprar um notebook'. Depois, veja quanto precisa guardar por mês até lá. Isso te ajuda a manter o foco e dizer não para gastos desnecessários."
+        },
+        {
+          keywords: ["educação dos filhos", "dinheiro para filhos", "como ensinar finanças para crianças"],
+          response: "Uma boa forma de ensinar é dando mesada e ajudando a criança a decidir como usar: uma parte para gastar, outra para guardar. Incentive também a pensar antes de comprar e valorizar o esforço para conquistar algo."
+        },
+        {
+          keywords: ["débito ou crédito", "melhor pagar no débito ou crédito", "diferença débito crédito"],
+          response: "No débito, o dinheiro sai na hora, o que ajuda a controlar melhor os gastos. No crédito, você paga depois — isso pode ser útil, mas exige disciplina para não estourar o orçamento e pagar juros."
+        },
+        {
+          keywords: ["finanças para estudante", "sou estudante e quero economizar", "como poupar sendo estudante"],
+          response: "Mesmo com pouca renda, dá para economizar. Use aplicativos gratuitos de controle financeiro, evite gastar com delivery e compre livros usados. Se conseguir fazer renda extra, guarde parte dela para emergências ou objetivos futuros."
         }
       ];
 
