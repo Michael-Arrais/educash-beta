@@ -13,7 +13,21 @@ type Message = {
 const AIChat = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Olá! Eu sou o CashIA, seu assistente financeiro. Como posso te ajudar hoje?" }
+    {
+      role: "assistant",
+      content: `Olá! Eu sou o CashIA, seu assistente financeiro. Como posso te ajudar hoje? Escolha uma opção ou digite sua pergunta:
+
+1️⃣ Reserva de emergência
+2️⃣ Como poupar com pouco dinheiro
+3️⃣ Educação financeira
+4️⃣ Organização do salário
+5️⃣ Como sair das dívidas
+6️⃣ Investimentos para iniciantes
+7️⃣ Como evitar gastos por impulso
+8️⃣ Planilhas e controle de gastos
+9️⃣ Diferenças entre débito e crédito
+🔟 Finanças para estudantes`
+    }
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -106,13 +120,37 @@ const AIChat = () => {
         }
       ];
 
-      const matched = intents.find(({ keywords }) =>
-        keywords.some(keyword => lowerMessage.includes(keyword))
-      );
+      // Mapeamento das opções do menu para os índices dos intents
+      const menuMap: { [key: string]: number } = {
+        "1": 0,    // Reserva de emergência
+        "2": 1,    // Como poupar com pouco dinheiro
+        "3": 2,    // Educação financeira
+        "4": 3,    // Organização do salário
+        "5": 10,   // Como sair das dívidas
+        "6": 11,   // Investimentos para iniciantes
+        "7": 12,   // Como evitar gastos por impulso
+        "8": 13,   // Planilhas e controle de gastos
+        "9": 16,   // Diferenças entre débito e crédito
+        "10": 17   // Finanças para estudantes
+      };
+
+      // Verificar se a entrada é uma opção numérica do menu
+      const trimmed = lowerMessage.trim();
+      const intentIndex = menuMap[trimmed];
+      
+      // Verificar também por padrões como "opção 1", "quero saber sobre a 1", etc.
+      const numberMatch = lowerMessage.match(/(?:opção\s*)?(\d+)|(?:sobre\s+a?\s*)?(\d+)/);
+      const extractedNumber = numberMatch ? (numberMatch[1] || numberMatch[2]) : null;
+      const finalIntentIndex = intentIndex !== undefined ? intentIndex : (extractedNumber ? menuMap[extractedNumber] : undefined);
+
+      const matched = typeof finalIntentIndex === "number" ? intents[finalIntentIndex] :
+        intents.find(({ keywords }) =>
+          keywords.some(keyword => lowerMessage.includes(keyword))
+        );
 
       const response = matched
         ? matched.response
-        : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças? Você pode me perguntar sobre reserva de emergência, educação financeira, como poupar dinheiro e outros temas.";
+        : "Desculpe, não entendi muito bem. Pode reformular sua pergunta sobre finanças? Você pode me perguntar sobre reserva de emergência, educação financeira, como poupar dinheiro e outros temas, ou escolher uma das opções numeradas do menu inicial.";
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
       setLoading(false);
@@ -134,7 +172,7 @@ const AIChat = () => {
                 </div>
               )}
               <div
-                className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                className={`max-w-[80%] rounded-lg px-4 py-2 whitespace-pre-line ${
                   msg.role === "user"
                     ? "bg-primary text-white rounded-tr-none"
                     : "bg-gray-100 text-gray-800 rounded-tl-none"
