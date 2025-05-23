@@ -15,7 +15,7 @@ const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: `Olá! Eu sou o CashIA, seu assistente financeiro. Como posso te ajudar hoje? Escolha uma opção ou digite sua pergunta:
+      content: `Olá! Eu sou o CashIA 🤖, seu assistente financeiro. Como posso te ajudar hoje? Escolha uma opção ou digite sua pergunta:
 
 1️⃣ Reserva de emergência
 2️⃣ Como poupar com pouco dinheiro
