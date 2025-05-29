@@ -55,7 +55,7 @@ Siga os passos abaixo para executar o projeto localmente:
 
 Entender a organização do código é fundamental para contribuir e manter o projeto. Adotamos uma estrutura baseada em funcionalidades e tipos de arquivos, visando a clareza e escalabilidade:
 
-finai-future-focus/
+educash-beta/
 ├── public/                 # 🏞️ Arquivos Estáticos (Favicons, etc.)
 ├── src/                    # 📁 Código Fonte Principal
 │   ├── assets/             # 🎨 Ativos Processados (Imagens, fontes)
