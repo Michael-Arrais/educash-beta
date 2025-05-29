@@ -1,58 +1,81 @@
 
+# INFORMAÇÕES PROJETO EDUCASH 🤖💰
 
-## Project info
+Bem-vindo ao **EduCash**, sua plataforma inteligente para gerenciamento e planejamento financeiro! Este projeto foi desenvolvido para ajudar estudantes que recebem benefícios governamentais a organizar suas finanças, definir metas e receber insights personalizados com a ajuda de um assistente de inteligência artificial (CASHIA).
 
-## How can I edit this code?
+## 📜 Visão Geral
 
-There are several ways of editing your application.
+O EduCash é uma aplicação web moderna construída com **React**, **TypeScript** e **TailwindCSS**, utilizando o **Vite** como *bundler* para um desenvolvimento rápido e eficiente. A plataforma oferece uma interface intuitiva e responsiva para que você possa controlar suas finanças de qualquer lugar.
 
+## ✨ Funcionalidades Principais
 
-**Use your preferred IDE**
+* **Dashboard Financeiro:** Visualize um resumo completo de suas receitas, despesas, saldo atual e progresso em direção às metas.
+* **Gerenciamento de Transações:** Adicione, edite e categorize facilmente suas transações diárias.
+* **Definição de Metas:** Crie metas financeiras (curto, médio e longo prazo) e acompanhe seu progresso.
+* **Orçamentos:** Estabeleça orçamentos por categoria e receba alertas quando estiver próximo de atingir os limites.
+* **Relatórios e Gráficos:** Analise seus padrões de gastos e receitas com gráficos interativos.
+* **Insights com IA (CashIA):** Receba dicas e sugestões personalizadas para otimizar suas finanças.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Tecnologias Utilizadas (Versão Original)
 
-Follow these steps:
+* **Frontend:** React
+* **Linguagem:** TypeScript
+* **Estilização:** TailwindCSS
+* **Build Tool:** Vite
+* **Gerenciador de Pacotes:** NPM / Yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠️ Instalação e Execução
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Siga os passos abaixo para executar o projeto localmente:
 
-# Step 3: Install the necessary dependencies.
-npm i
+1.  **Clone o Repositório:**
+    ```bash
+    git clone [https://github.com/Michael-Arrais/finai-future-focus.git](https://github.com/Michael-Arrais/finai-future-focus.git)
+    cd finai-future-focus
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+2.  **Instale as Dependências:**
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
 
-**Edit a file directly in GitHub**
+3.  **Execute o Servidor de Desenvolvimento:**
+    ```bash
+    npm run dev
+    # ou
+    yarn dev
+    ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4.  **Acesse a Aplicação:**
+    Abra seu navegador e acesse `http://localhost:8080` (ou a porta indicada pelo Vite).
 
-**Use GitHub Codespaces**
+## 📂 Estrutura do Projeto (React + TypeScript + TailwindCSS)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Entender a organização do código é fundamental para contribuir e manter o projeto. Adotamos uma estrutura baseada em funcionalidades e tipos de arquivos, visando a clareza e escalabilidade:
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
+finai-future-focus/
+├── public/                 # 🏞️ Arquivos Estáticos (Favicons, etc.)
+├── src/                    # 📁 Código Fonte Principal
+│   ├── assets/             # 🎨 Ativos Processados (Imagens, fontes)
+│   ├── components/         # 🧩 Componentes Reutilizáveis (Botões, Cards, Layouts)
+│   ├── contexts/           # 🌐 Contextos React (Gerenciamento de estado global/compartilhado)
+│   ├── hooks/              # 🎣 Hooks Personalizados (Lógica reutilizável, ex: useFetch)
+│   ├── integrations/       # 🔗 Integrações / Serviços (Chamadas API, SDKs externos)
+│   ├── lib/                # 📚 Biblioteca / Utilitários (Funções auxiliares, constantes)
+│   ├── styles/             # 💅 Estilos Globais (index.css com Tailwind)
+│   ├── App.tsx             # ⚙️ Componente Principal da Aplicação
+│   ├── main.tsx            # 🚀 Ponto de Entrada (Inicialização do React)
+│   └── vite-env.d.ts       # 📄 Tipos do Vite
+├── .eslintrc.cjs           #  Linter (ESLint)
+├── .gitignore              # 🚫 Git Ignore
+├── index.html              # 📄 HTML Principal
+├── package.json            # 📦 Pacotes e Scripts
+├── package-lock.json       # 🔗 Trava de Pacotes
+├── postcss.config.js       # 🖌️ PostCSS Config
+├── README.md               # 📖 Documentação
+├── tailwind.config.js      # 🌬️ Tailwind Config
+├── tsconfig.json           # 🇹🇸 TypeScript Config
+├── tsconfig.node.json      # 🇹🇸 TS Node Config
+└── vite.config.ts          # ⚡ Vite Config
