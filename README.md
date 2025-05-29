@@ -30,7 +30,7 @@ Siga os passos abaixo para executar o projeto localmente:
 
 1.  **Clone o Repositório:**
     ```bash
-    git clone [https://github.com/Michael-Arrais/finai-future-focus.git](https://github.com/Michael-Arrais/finai-future-focus.git)
+    git clone [https://github.com/Michael-Arrais/educash-beta.git](https://github.com/Michael-Arrais/educash-beta.git)
     cd finai-future-focus
     ```
 
@@ -55,6 +55,7 @@ Siga os passos abaixo para executar o projeto localmente:
 
 Entender a organização do código é fundamental para contribuir e manter o projeto. Adotamos uma estrutura baseada em funcionalidades e tipos de arquivos, visando a clareza e escalabilidade:
 
+```text
 educash-beta/
 ├── public/                 # 🏞️ Arquivos Estáticos (Favicons, etc.)
 ├── src/                    # 📁 Código Fonte Principal
@@ -74,8 +75,58 @@ educash-beta/
 ├── package.json            # 📦 Pacotes e Scripts
 ├── package-lock.json       # 🔗 Trava de Pacotes
 ├── postcss.config.js       # 🖌️ PostCSS Config
-├── README.md               # 📖 Documentação
+├── README.md               # 📖 Documentação (Este Arquivo!)
 ├── tailwind.config.js      # 🌬️ Tailwind Config
 ├── tsconfig.json           # 🇹🇸 TypeScript Config
 ├── tsconfig.node.json      # 🇹🇸 TS Node Config
 └── vite.config.ts          # ⚡ Vite Config
+```
+
+## 🔹 Explicação Detalhada (Incluindo Novas Pastas):
+
+**public/:** Contém arquivos estáticos servidos diretamente.
+
+**src/:** O coração da aplicação.
+
+**assets/:** Para imagens, fontes, etc., que são importados e processados.
+
+**components/:** Fundamental para React. Armazena seus componentes de UI reutilizáveis. Pode ser subdividida (ex: ui/, layout/, features/) para melhor organização. Cada componente aqui deve ser o mais independente possível.
+
+**contexts/:** Onde você define seus Contextos da React Context API. Cada arquivo aqui geralmente exporta um Context e um Provider para compartilhar estado (como informações do usuário logado, tema da aplicação) sem precisar passar props por múltiplos níveis.
+
+**hooks/:** Para criar seus próprios Hooks customizados. Se você tem uma lógica que se repete em vários componentes (como buscar dados de uma API, interagir com o localStorage), você pode extraí-la para um Hook customizado (ex: useUserData, useApi) e reutilizá-la facilmente.
+
+**integrations/ (ou services/ ou api/):** Centraliza a lógica de comunicação com serviços externos. É aqui que você colocaria suas funções para fazer chamadas a APIs REST/GraphQL, configurar clientes HTTP (como Axios ou Fetch wrappers), ou interagir com SDKs de terceiros (Firebase, Stripe, etc.).
+
+**lib/ (ou utils/):** Uma pasta para "utilitários" – funções auxiliares genéricas, constantes, formatações (datas, moedas), lógica de validação, ou qualquer código que não seja um componente, hook ou serviço, mas que seja útil em várias partes do projeto.
+
+**styles/:** Estilos globais e, principalmente, o index.css para importar o Tailwind.
+
+**App.tsx:** O componente raiz que organiza a aplicação.
+
+**main.tsx:** O ponto de entrada que renderiza o App.
+
+**Arquivos de Configuração: vite.config.ts, tailwind.config.js, postcss.config.js, tsconfig.json, .eslintrc.cjs** definem como as ferramentas (*Vite, Tailwind, TypeScript, ESLint*) devem se comportar.
+
+**Outros: index.html, package.json, .gitignore, README.md** são arquivos padrão de projetos web e Node.js.
+
+## 🤝 Como Contribuir
+
+Sua ajuda é muito bem-vinda! Se você tem ideias para melhorar o Fin.AI, siga estes passos:
+
+1.  **Faça um Fork:** Crie sua própria cópia do projeto.
+2.  **Crie um Branch:** `git checkout -b feature/sua-incrivel-ideia`
+3.  **Desenvolva:** Implemente sua melhoria.
+4.  **Faça Commit:** `git commit -m 'feat: Adiciona funcionalidade X'` (Use [Commits Semânticos](https://www.conventionalcommits.org/en/v1.0.0/))
+5.  **Envie:** `git push origin feature/sua-incrivel-ideia`
+6.  **Abra um Pull Request:** Descreva sua contribuição e envie para revisão.
+
+---
+
+## 📄 Licença
+
+Este projeto é orgulhosamente distribuído sob a **Licença MIT**. Sinta-se livre para usar, modificar e distribuir.
+
+---
+
+**Desenvolvido com ☕ por alunos do CETI PROF PINHEIRO MACHADO e colaboradores.**
