@@ -41,6 +41,9 @@ const AIChat = () => {
     setLoading(true);
     setMessage("");
 
+    // Tempo de resposta variável entre 1-3 segundos para simular processamento real
+    const responseTime = Math.random() * 2000 + 1000; // 1000ms a 3000ms
+
     setTimeout(() => {
       const lowerMessage = message.toLowerCase();
 
@@ -154,7 +157,7 @@ const AIChat = () => {
 
       setMessages(prev => [...prev, { role: "assistant", content: response }]);
       setLoading(false);
-    }, 1000);
+    }, responseTime);
   };
 
   return (
@@ -167,7 +170,7 @@ const AIChat = () => {
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               {msg.role === "assistant" && (
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2 flex-shrink-0">
                   <CashLogo className="w-5 h-5 text-white" />
                 </div>
               )}
@@ -185,14 +188,17 @@ const AIChat = () => {
 
           {loading && (
             <div className="flex justify-start">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2 flex-shrink-0">
                 <CashLogo className="w-5 h-5 text-white" />
               </div>
               <div className="bg-gray-100 rounded-lg px-4 py-2 rounded-tl-none">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></div>
-                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300"></div>
+                <div className="flex items-center space-x-1">
+                  <span className="text-gray-600 text-sm mr-2">CashIA está digitando</span>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -205,6 +211,7 @@ const AIChat = () => {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Pergunte ao CashIA sobre suas finanças..."
             className="flex-1"
+            disabled={loading}
           />
           <Button type="submit" disabled={loading || !message.trim()}>
             Enviar
