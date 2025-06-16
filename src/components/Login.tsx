@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -78,11 +79,11 @@ const Login = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-      {/* Left side - Mascot */}
+      {/* Mascot positioned above login form on mobile, left side on desktop */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
         <div className="text-center">
           <img 
-            src="/lovable-uploads/78e4b872-c9f1-425e-9276-5c1b727b26f5.png" 
+            src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
             alt="EduCash Mascot"
             className="w-96 h-96 object-contain mx-auto mb-8"
           />
@@ -96,14 +97,29 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right side - Login form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+      {/* Right side - Login form with mascot on top for mobile */}
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+        {/* Mobile mascot - shown only on small screens */}
+        <div className="lg:hidden mb-6 text-center">
+          <img 
+            src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
+            alt="EduCash Mascot"
+            className="w-48 h-48 sm:w-64 sm:h-64 object-contain mx-auto mb-4"
+          />
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+            Bem-vindo ao EduCash!
+          </h2>
+          <p className="text-gray-600 text-sm sm:text-base max-w-sm mx-auto">
+            Sua jornada para a inteligência financeira começa aqui.
+          </p>
+        </div>
+
+        <div className="w-full max-w-md space-y-6">
           <div className="text-center">
             <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <CashLogo className="w-10 h-10 text-white" />
             </div>
-            <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+            <h2 className="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
               Bem-vindo ao EduCash
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">

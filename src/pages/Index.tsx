@@ -90,7 +90,7 @@ const Index = () => {
               </div>
               <div className="lg:w-1/2 flex justify-center">
                 <img 
-                  src="/lovable-uploads/1edb0d73-9c7a-4370-8a7c-9400dd16373f.png" 
+                  src="/lovable-uploads/4b7b65eb-2aa5-4255-8076-0f860da30b28.png" 
                   alt="CashIA - Mascote do EduCash"
                   className="w-80 h-80 object-contain"
                 />
