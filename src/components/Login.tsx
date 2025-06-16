@@ -78,12 +78,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="flex min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
       {/* Mascot positioned above login form on mobile, left side on desktop */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
         <div className="text-center">
           <img 
-            src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
+            src="/lovable-uploads/fbe5f4c4-cdc7-43a7-978e-b8b9fd9947f5.png" 
             alt="EduCash Mascot"
             className="w-96 h-96 object-contain mx-auto mb-8"
             style={{
@@ -106,7 +106,7 @@ const Login = () => {
         {/* Mobile mascot - shown only on small screens */}
         <div className="lg:hidden mb-6 text-center">
           <img 
-            src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
+            src="/lovable-uploads/fbe5f4c4-cdc7-43a7-978e-b8b9fd9947f5.png" 
             alt="EduCash Mascot"
             className="w-48 h-48 sm:w-64 sm:h-64 object-contain mx-auto mb-4"
             style={{
@@ -124,7 +124,7 @@ const Login = () => {
 
         <div className="w-full max-w-md space-y-6">
           <div className="text-center">
-            <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
               <CashLogo className="w-10 h-10 text-white" />
             </div>
             <h2 className="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-gray-900">
@@ -165,7 +165,7 @@ const Login = () => {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <label htmlFor="password" className="text-sm font-medium">Senha</label>
-                        <Link to="/forgot-password" className="text-xs text-primary hover:underline">
+                        <Link to="/forgot-password" className="text-xs text-blue-500 hover:underline">
                           Esqueceu a senha?
                         </Link>
                       </div>
@@ -182,7 +182,7 @@ const Login = () => {
                   <CardFooter>
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary-600"
+                      className="w-full bg-blue-500 hover:bg-blue-600"
                       disabled={loading}
                     >
                       {loading ? "Entrando..." : "Entrar"}
@@ -247,7 +247,7 @@ const Login = () => {
                   <CardFooter>
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary-600"
+                      className="w-full bg-blue-500 hover:bg-blue-600"
                       disabled={loading}
                     >
                       {loading ? "Criando conta..." : "Criar conta"}
