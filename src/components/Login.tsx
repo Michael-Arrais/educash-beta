@@ -86,6 +86,10 @@ const Login = () => {
             src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
             alt="EduCash Mascot"
             className="w-96 h-96 object-contain mx-auto mb-8"
+            style={{
+              filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))',
+              mixBlendMode: 'multiply'
+            }}
           />
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
             Bem-vindo ao EduCash!
@@ -105,6 +109,10 @@ const Login = () => {
             src="/lovable-uploads/df65cb99-1db2-44e6-a5b6-4153b73bfe4c.png" 
             alt="EduCash Mascot"
             className="w-48 h-48 sm:w-64 sm:h-64 object-contain mx-auto mb-4"
+            style={{
+              filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1))',
+              mixBlendMode: 'multiply'
+            }}
           />
           <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
             Bem-vindo ao EduCash!

@@ -93,6 +93,10 @@ const Index = () => {
                   src="/lovable-uploads/4b7b65eb-2aa5-4255-8076-0f860da30b28.png" 
                   alt="CashIA - Mascote do EduCash"
                   className="w-80 h-80 object-contain"
+                  style={{
+                    filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))',
+                    mixBlendMode: 'multiply'
+                  }}
                 />
               </div>
             </div>
