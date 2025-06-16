@@ -92,7 +92,7 @@ const Login = () => {
             }}
           />
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Bem-vindo ao EduCash!
+            Olá, sou o CashIA!
           </h2>
           <p className="text-gray-600 max-w-md">
             Sua jornada para a inteligência financeira começa aqui. 
