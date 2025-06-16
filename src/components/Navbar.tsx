@@ -26,10 +26,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mr-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-2">
               <CashLogo className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-xl text-gray-800">Edu<span className="text-primary">Cash</span></span>
+            <span className="font-bold text-xl">
+              <span className="text-gray-800">Edu</span>
+              <span className="text-blue-500">Cash</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
