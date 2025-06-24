@@ -31,7 +31,7 @@ Siga os passos abaixo para executar o projeto localmente:
 1.  **Clone o Repositório:**
     ```bash
     git clone [https://github.com/Michael-Arrais/educash-beta.git](https://github.com/Michael-Arrais/educash-beta.git)
-    cd finai-future-focus
+    cd educash-beta
     ```
 
 2.  **Instale as Dependências:**
@@ -112,7 +112,7 @@ educash-beta/
 
 ## 🤝 Como Contribuir
 
-Sua ajuda é muito bem-vinda! Se você tem ideias para melhorar o Fin.AI, siga estes passos:
+Sua ajuda é muito bem-vinda! Se você tem ideias para melhorar o EDUCASH, siga estes passos:
 
 1.  **Faça um Fork:** Crie sua própria cópia do projeto.
 2.  **Crie um Branch:** `git checkout -b feature/sua-incrivel-ideia`
